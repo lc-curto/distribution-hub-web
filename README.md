@@ -1,27 +1,72 @@
 # Distribution Hub Web
 
-Frontend React do Distribution Hub, mantido separadamente da API FastAPI.
+React frontend for Distribution Hub, maintained separately from the FastAPI API.
 
-## Requisitos
+## Current status
 
-- Node.js 22
-- pnpm 9
+The frontend is an initial scaffold. It currently renders a landing screen and does not consume commercial endpoints, provide business routes, authentication, customer screens, or a functional API integration.
 
-## Desenvolvimento
+The backend and product domain are documented in the [API repository](https://github.com/lc-curto/distribution-hub-api):
+
+- [Architecture](https://github.com/lc-curto/distribution-hub-api/blob/main/docs/ARCHITECTURE.md)
+- [Domain and product](https://github.com/lc-curto/distribution-hub-api/blob/main/docs/DOMAIN.md)
+- [Data model](https://github.com/lc-curto/distribution-hub-api/blob/main/docs/DATA_MODEL.md)
+- [API runbook](https://github.com/lc-curto/distribution-hub-api/blob/main/docs/RUNBOOK.md)
+
+## Technologies
+
+- Node.js 22 in CI;
+- pnpm 9.15.0 in CI;
+- React 18;
+- TypeScript;
+- Vite;
+- React Router;
+- TanStack React Query;
+- Vitest.
+
+## Requirements
+
+- Node.js 22;
+- pnpm 9 or a version compatible with lockfile version 9.
+
+## Configuration and development
 
 ```bash
 pnpm install
+cp .env.example .env
 pnpm dev
 ```
 
-Configure `VITE_API_URL` para apontar para a API local. No estado atual, o frontend é apenas um scaffold e ainda não consome endpoints comerciais.
+The only currently available variable is:
 
-## Documentação comum
+```text
+VITE_API_URL=http://localhost:8000
+```
 
-A documentação do produto, domínio, regras, requisitos e arquitetura está no repositório [distribution-hub-api](https://github.com/lc-curto/distribution-hub-api), em [`docs/`](https://github.com/lc-curto/distribution-hub-api/tree/main/docs). O contrato HTTP é a fronteira entre os repositórios.
+It represents the planned API address, but the current scaffold does not use it yet.
 
-## Validação
+## Validation
 
 ```bash
 pnpm build
+pnpm test
 ```
+
+The CI workflow runs `pnpm install --frozen-lockfile` and `pnpm build`. A test script exists, but no frontend tests are currently implemented and CI does not run `pnpm test` yet.
+
+## Current structure
+
+```text
+src/main.tsx       entrypoint and initial component
+src/app/           reserved for application code
+src/assets/        reserved for assets
+src/hooks/         reserved for hooks
+src/layouts/       reserved for layouts
+src/store/         reserved for state
+src/styles/        reserved for styles
+src/test/          reserved for tests
+src/types/         reserved for types
+src/utils/         reserved for utilities
+```
+
+Reserved directories do not prove that features are implemented.
